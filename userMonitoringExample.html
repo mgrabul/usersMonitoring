@@ -7,14 +7,14 @@
 
     <script>
         $(document).ready(function () {
-            var userEmail = "marko@XXXX.com";
+            var userEmail = "marko@XXX.com";
             var userName = "marko grabuloski";
             var monitorApp = new MonitorApp();
-            monitorApp.initMonitoring(userEmail, userName, 10000, function (usersSet) {
-                console.log("BUILD VIEW HERE");
+            monitorApp.initMonitoring(userEmail, userName, 5000, function (usersSet) {
                 showUsers(usersSet);
             });
         });
+
         function showUsers(usersSet) {
             $("#activeUsers").empty();
             var replaceAt = function (value) {
@@ -22,8 +22,6 @@
             };
 
             for (var key in usersSet) {
-                console.log("INSIDE FOOR LOOP--", key);
-                console.log("---------");
                 var elementContainer = document.createElement("div");
                 elementContainer.id = replaceAt(key);
 
