@@ -1,0 +1,42 @@
+<head>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.5.0/firebase.js"></script>
+    <script src="application.js"></script>
+    <script src="userMonitoringConfig.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            var userEmail = "marko@XXXX.com";
+            var userName = "marko grabuloski";
+            var monitorApp = new MonitorApp();
+            monitorApp.initMonitoring(userEmail, userName, 10000, function (usersSet) {
+                console.log("BUILD VIEW HERE");
+                showUsers(usersSet);
+            });
+        });
+        function showUsers(usersSet) {
+            $("#activeUsers").empty();
+            var replaceAt = function (value) {
+                return value.replace("@", "_");
+            };
+
+            for (var key in usersSet) {
+                console.log("INSIDE FOOR LOOP--", key);
+                console.log("---------");
+                var elementContainer = document.createElement("div");
+                elementContainer.id = replaceAt(key);
+
+                var textElement = document.createTextNode(key);
+                elementContainer.appendChild(textElement);
+
+                $("#activeUsers").append(elementContainer);
+
+            };
+        }
+    </script>
+</head>
+
+<body>
+    <div id="activeUsers"></div>
+</body>
